@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class AuthorMiddleware
 {
@@ -13,8 +14,17 @@ class AuthorMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
+
+    //cant access  dashboard without login
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if(Auth::check() && Auth::user()->role->id == 2 )
+        {
+            return $next($request);
+        }
+        else
+        {
+            return  redirect()->route('login');
+        }
     }
 }

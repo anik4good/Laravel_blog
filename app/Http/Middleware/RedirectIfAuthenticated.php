@@ -16,12 +16,22 @@ class RedirectIfAuthenticated
      * @param  string|null  $guard
      * @return mixed
      */
+
+    //eg. cant access admin dashboard if logged in as author
+
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect(RouteServiceProvider::HOME);
+        if (Auth::guard($guard)->check() && Auth::user()->role->id == 1) {
+            return redirect()->route('admin.dashboard');
         }
 
-        return $next($request);
+        else if (Auth::guard($guard)->check() && Auth::user()->role->id == 2) {
+            return redirect()->route('author.dashboard');
+        }
+
+        else{
+            return $next($request);
+        }
+
     }
 }
