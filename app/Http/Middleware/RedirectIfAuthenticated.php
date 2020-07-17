@@ -25,7 +25,7 @@ class RedirectIfAuthenticated
             return redirect()->route('admin.dashboard');
         }
 
-        else if (Auth::guard($guard)->check() && Auth::user()->role->id == 2) {
+        elseif (Auth::guard($guard)->check() && Auth::user()->role->id == 2) {
             return redirect()->route('author.dashboard');
         }
 
