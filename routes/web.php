@@ -33,6 +33,8 @@ Route::group(['as'=>'author.','prefix'=>'author','namespace'=>'Author','middlewa
 });
 
 
+
+
 Route::get('/clear-cache', function() {
     Artisan::call('cache:clear');
     return "Cache is cleared";
