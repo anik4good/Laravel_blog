@@ -7,11 +7,7 @@
     <!-- END: Page CSS-->
 @endpush
 
-@section('content')
-
-
-
-
+@section('auth_content')
 
 <body class="vertical-layout vertical-menu-modern 1-column  navbar-floating footer-static bg-full-screen-image  blank-page blank-page" data-open="click" data-menu="vertical-menu-modern" data-col="1-column">
 <!-- BEGIN: Content-->
@@ -42,7 +38,7 @@
                                             <form method="POST" action="{{ route('login') }}">
                                                 @csrf
                                                 <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                                    <input id="email"  value="admin@gmail.com" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                                     @error('email')
                                                     <span class="invalid-feedback" role="alert">
@@ -56,7 +52,7 @@
                                                 </fieldset>
 
                                                 <fieldset class="form-label-group position-relative has-icon-left">
-                                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                                    <input id="password" value="123456" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                                     @error('password')
                                                     <span class="invalid-feedback" role="alert">
