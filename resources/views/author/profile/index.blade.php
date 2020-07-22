@@ -60,7 +60,7 @@
                                         <div class="tab-content">
                                             <div role="tabpanel" class="tab-pane active" id="account-vertical-general"
                                                  aria-labelledby="account-pill-general" aria-expanded="true">
-                                                <form method="POST" action="{{ route('admin.profile.update') }}"
+                                                <form method="POST" action="{{ route('author.profile.update') }}"
                                                       enctype="multipart/form-data">
                                                     @csrf
                                                     @method('PUT')
@@ -146,7 +146,7 @@
                                                                     class="btn btn-primary mr-sm-1 mb-1 mb-sm-0">Save
                                                                 changes
                                                             </button>
-                                                            <button type="reset" href="{{ route('admin.dashboard') }}"
+                                                            <button type="reset" href="{{ route('author.dashboard') }}"
                                                                     class="btn btn-outline-warning">Cancel
                                                             </button>
                                                         </div>
@@ -155,7 +155,7 @@
                                             </div>
                                             <div class="tab-pane fade " id="account-vertical-password" role="tabpanel"
                                                  aria-labelledby="account-pill-password" aria-expanded="false">
-                                                <form method="POST" action="{{ route('admin.password.update') }}"
+                                                <form method="POST" action="{{ route('author.password.update') }}"
                                                       enctype="multipart/form-data">
                                                     @csrf
                                                     @method('PUT')

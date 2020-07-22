@@ -8,6 +8,9 @@
         <div class="navbar-container content">
             <div class="navbar-collapse" id="navbar-mobile">
                 <div class="mr-auto float-left bookmark-wrapper d-flex align-items-center">
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item mobile-menu d-xl-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ficon feather icon-menu"></i></a></li>
+                    </ul>
 
                 </div>
                 <ul class="nav navbar-nav float-right">
@@ -43,12 +46,20 @@
                                     class="user-name text-bold-600">{{Auth::user()->name}}</span><span
                                     class="badge-success">Available</span></div>
                             <span><img class="round"
-                                       src="{{asset('public/assets/backend')}}/app-assets/images/portrait/small/avatar-s-11.jpg"
+                                       src="{{ asset('/public/storage/profile')}}/{{Auth::user()->image }}"
                                        alt="avatar" height="40" width="40"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="{{ route('admin.profile') }}"><i
-                                    class="feather icon-user"></i> Edit Profile</a>
+                            @if(Request::is('admin*'))
+                                <a class="dropdown-item" href="{{ route('admin.profile') }}"><i
+                                        class="feather icon-user"></i> Edit Profile</a>
+                            @endif
+
+                            @if(Request::is('author*'))
+                                <a class="dropdown-item" href="{{ route('author.profile') }}"><i
+                                        class="feather icon-user"></i> Edit Profile</a>
+                            @endif
+
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();

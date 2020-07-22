@@ -43,71 +43,69 @@
     <!-- END: Page CSS-->
 
     <!-- ***************************************************************************************************-->
+    {{--    tooster--}}
+  <link rel="stylesheet" href="https://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 
-    <!-- BEGIN: Theme JS Common-->
-    <script src="{{asset('public/assets/backend')}}/app-assets/js/core/app-menu.js"></script>
-    <script src="{{asset('public/assets/backend')}}/app-assets/js/core/app.js"></script>
-    <script src="{{asset('public/assets/backend')}}/app-assets/js/scripts/components.js"></script>
-    <!-- END: Theme JS Common-->
 
-    <!-- BEGIN: Vendor JS Common-->
-    <script src="{{asset('public/assets/backend')}}/app-assets/vendors/js/vendors.min.js"></script>
-    <script src="{{asset('public/assets/backend')}}/app-assets/vendors/js/forms/select/select2.full.min.js"></script>
-    <!-- BEGIN Vendor JS-->
 
-    <!-- BEGIN: Theme JS-->
-    <script src="{{asset('public/assets/backend')}}/app-assets/js/core/app-menu.js"></script>
-    <script src="{{asset('public/assets/backend')}}/app-assets/js/core/app.js"></script>
-    <!-- END: Theme JS-->
 
-    <!-- BEGIN: Page Vendor JS-->
-    <script src="{{asset('public/assets/backend')}}/app-assets/vendors/js/ui/prism.min.js"></script>
-    <!-- END: Page Vendor JS-->
-{{--    tooster--}}
-    <link rel="stylesheet" href="https://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+    @stack('css')
 
-    <!-- Custom CSS for pages-->
-@stack('css')
-<!-- Custom Script for pages-->
-    @stack('js')
 
 </head>
+
 @guest
     @yield('auth_content')
 @else
 
 
-    <body class="vertical-layout semi-dark-layout vertical-menu-modern 2-columns  navbar-floating footer-static  " data-open="click"
+    <body class="vertical-layout semi-dark-layout vertical-menu-modern 2-columns  navbar-floating footer-static  "
+          data-open="click"
           data-menu="vertical-menu-modern" data-col="2-columns">
-    <!-- fixed-top-->
+
     @include('layouts.backend.partial.header')
-    @include('layouts.backend.partial.sidebar')
+   @include('layouts.backend.partial.sidebar')
 
 
-    @yield('content')
-    </div>
-    <!-- END Content-->
+ @yield('content')
 
-
+    <div class="sidenav-overlay"></div>
+    <div class="drag-target"></div>
     <!-- START FOOTER LIGHT-->
     @include('layouts.backend.partial.footer')
     <!-- END FOOTER LIGHT-->
 
 
-    <!-- END: Body-->
 
+
+    {{--    <!-- BEGIN: Vendor JS Common-->--}}
+    <script src="{{asset('public/assets/backend')}}/app-assets/vendors/js/vendors.min.js"></script>
+    <script src="{{asset('public/assets/backend')}}/app-assets/vendors/js/forms/select/select2.full.min.js"></script>
+    <!-- BEGIN Vendor JS-->
+
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="{{asset('public/assets/backend')}}/app-assets/vendors/js/ui/prism.min.js"></script>
+    <!-- END: Page Vendor JS-->
+
+    <!-- BEGIN: Theme JS Common-->
+    <script src="{{asset('public/assets/backend')}}/app-assets/js/core/app-menu.js"></script>
+    <script src="{{asset('public/assets/backend')}}/app-assets/js/core/app.js"></script>
+    {{--    <script src="{{asset('public/assets/backend')}}/app-assets/js/scripts/components.js"></script>--}}
+    <!-- END: Theme JS Common-->
 
     <script src="https://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
     {!! Toastr::message() !!}
     <script>
         @if ($errors->any())
         @foreach ($errors->all() as $error)
-                toastr.error('{{$error}}');
-            @endforeach
+        toastr.error('{{$error}}');
+        @endforeach
         @endif
     </script>
 
 
+    @stack('js')
     </body>
+    <!-- END: Body-->
 </html>
 @endguest

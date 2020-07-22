@@ -31,13 +31,21 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'
 
     //Profile
     route::get('profile','ProfileController@index')->name('profile');
-    route::put('profile','ProfileController@update')->name('profile.update');
+    route::put('profile-update','ProfileController@updateprofile')->name('profile.update');
+    route::put('password-update','ProfileController@updatepassword')->name('password.update');
 
 });
+
+
 
 Route::group(['as'=>'author.','prefix'=>'author','namespace'=>'Author','middleware'=>['auth','author']],function ()
 {
     route::get('dashboard','DashboardController@index')->name('dashboard')->middleware('verified');
+
+    //Profile
+    route::get('profile','ProfileController@index')->name('profile');
+    route::put('profile-update','ProfileController@updateprofile')->name('profile.update');
+    route::put('password-update','ProfileController@updatepassword')->name('password.update');
 });
 
 

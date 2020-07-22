@@ -178,13 +178,15 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        return $category_single = Category::find($id);
+        $category_single = Category::findOrFail($id);
 
         //            //checking if images is already  there then delete
-//        if (Storage::disk('public')->exists('category/'.$category->images)) {
-//            Storage::disk('public')->delete('category/'.$category->images);
-//        }
-//        $category->delete();
+        if (Storage::disk('public')->exists('category/'.$category_single->images)) {
+            Storage::disk('public')->delete('category/'.$category_single->images);
+        }
+        $category_single->delete();
+        Toastr::success(' Data Successfully Deleted');
+        return redirect()->back();
 
     }
 }

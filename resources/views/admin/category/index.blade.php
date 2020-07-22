@@ -2,9 +2,10 @@
 @section('tittle', 'Category -')
 
 @push('css')
+    <!------------------------PAGE: Custom CSS START------------------------------->
     <link rel="stylesheet" type="text/css"
           href="{{asset('public/assets/backend')}}/app-assets/vendors/css/tables/datatable/datatables.min.css">
-    <!-- END: Vendor CSS-->
+    <!------------------------PAGE: Custom CSS END------------------------------->
 @endpush
 
 @section('content')
@@ -64,7 +65,7 @@
                                                 @foreach($category as $key=>$row)
                                                     <tr>
                                                         <td>{{ $key + 1 }}</td>
-                                                        <td>{{ $row->id }}</td>
+                                                        <td>{{ $row->name }}</td>
                                                         <td><img
                                                                 src="{{ asset('/public/storage/category')}}/{{$row->images }}"
                                                                 class="rounded mr-75" alt="profile image" height="64"
@@ -74,15 +75,15 @@
                                                             <a href="{{route('admin.category.edit',$row->id)}}"><i
                                                                     class="feather icon-check-circle font-medium-5 info"> </i></a>
 
-                                                            <a href="{{route('admin.category.destroy',$row->id)}}"><i
+                                                            <a onclick="deleteid({{$row->id}})"><i
                                                                     class="feather icon-delete font-medium-5 danger"></i></a>
-{{--                                                            <form id=""--}}
-{{--                                                                  action="{{route('admin.category.destroy',$row->id)}}"--}}
-{{--                                                                  method="post">--}}
-{{--                                                                @csrf--}}
-{{--                                                                @method('DELETE')--}}
-{{--                                                            </form>--}}
-{{--                                                        </td>--}}
+                                                            <form id="delete-id-{{$row->id}}"
+                                                                  action="{{route('admin.category.destroy',$row->id)}}"
+                                                                  method="post" style="display: none">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                            </form>
+                                                        </td>
 
                                                     </tr>
                                                 @endforeach
@@ -117,7 +118,7 @@
 
 @push('js')
 
-
+    <!------------------------PAGE: Custom JS START------------------------------->
     <!-- BEGIN: Page Vendor JS-->
     <script src="{{asset('public/assets/backend')}}/app-assets/vendors/js/ui/jquery.sticky.js"></script>
     <script src="{{asset('public/assets/backend')}}/app-assets/vendors/js/tables/datatable/pdfmake.min.js"></script>
@@ -138,6 +139,47 @@
     <!-- BEGIN: Page JS-->
     <script src="{{asset('public/assets/backend')}}/app-assets/js/scripts/datatables/datatable.js"></script>
     <!-- END: Page JS-->
+    {{--    sweet alert--}}
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@sweetalert2/themes@3.2.0/wordpress-admin/wordpress-admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.0/dist/sweetalert2.all.min.js"></script>
+    <script type="text/javascript">
+        function deleteid(id) {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            })
 
- 
+            swalWithBootstrapButtons.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    event.preventDefault();
+                    document.getElementById('delete-id-' + id).submit();
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Cancelled',
+                        'Your imaginary file is safe :)',
+                        'error'
+                    )
+                }
+            })
+        }
+
+
+    </script>
+
+    <!------------------------PAGE: Custom JS END------------------------------->
 @endpush

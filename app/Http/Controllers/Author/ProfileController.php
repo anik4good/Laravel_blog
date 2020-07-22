@@ -1,24 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Author;
 
 use App\Http\Controllers\Controller;
+use App\User;
+use Brian2694\Toastr\Facades\Toastr;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\User;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
-use Brian2694\Toastr\Facades\Toastr;
-
 
 class ProfileController extends Controller
 {
     public function index()
     {
-        return view('admin.profile.index');
+        return view('author.profile.index');
     }
 
     public function updateprofile(Request $request)
