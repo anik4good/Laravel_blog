@@ -19,7 +19,7 @@
                     <div class="row">
 
                         <div class="col-3">
-                            <div class="card">
+                            <div class="card text-white bg-gradient-primary text-center">
                                 <div class="card-header">
                                     Add New Tag
                                 </div>
@@ -36,7 +36,7 @@
                             </div>
                         </div>
                         <div class="col-9">
-                            <div class="card">
+                            <div class="card border-info text-center bg-transparent">
                                 <div class="card-header">
                                     <h4 class="card-title">Tag List</h4>
                                 </div>
@@ -49,16 +49,30 @@
                                                     <th>ID</th>
                                                     <th>Tag Name</th>
                                                     <th>Created At</th>
+                                                    <td>Action</td>
 
                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                 @foreach($tag as $key=>$row)
-                                                <tr>
-                                                    <td>{{ $key + 1 }}</td>
-                                                    <td>{{ $row->name }}</td>
-                                                    <td class="text-info">{{ $row->created_at->diffForHumans() }}</td>
-                                                </tr>
+                                                    <tr>
+                                                        <td>{{ $key + 1 }}</td>
+                                                        <td>{{ $row->name }}</td>
+                                                        <td class="text-info">{{ $row->created_at->diffForHumans() }}</td>
+                                                        <td>
+                                                            <a href="{{route('admin.tag.edit',$row->id)}}"><i
+                                                                    class="feather icon-check-circle font-medium-5 info"> </i></a>
+
+                                                            <a onclick="deleteid({{$row->id}})"><i
+                                                                    class="feather icon-delete font-medium-5 danger"></i></a>
+                                                            <form id="delete-id-{{$row->id}}"
+                                                                  action="{{route('admin.tag.destroy',$row->id)}}"
+                                                                  method="post" style="display: none">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                            </form>
+                                                        </td>
+                                                    </tr>
                                                 @endforeach
                                                 </tbody>
                                                 <tfoot>
@@ -66,6 +80,7 @@
                                                     <th>ID</th>
                                                     <th>Name</th>
                                                     <th>Created At</th>
+                                                    <td>Action</td>
                                                 </tr>
                                                 </tfoot>
                                             </table>
@@ -110,4 +125,47 @@
     <!-- BEGIN: Page JS-->
     <script src="{{asset('public/assets/backend')}}/app-assets/js/scripts/datatables/datatable.js"></script>
     <!-- END: Page JS-->
+    {{--    sweet alert--}}
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@sweetalert2/themes@3.2.0/wordpress-admin/wordpress-admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.0/dist/sweetalert2.all.min.js"></script>
+    <script type="text/javascript">
+        function deleteid(id) {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    event.preventDefault();
+                    document.getElementById('delete-id-' + id).submit();
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Cancelled',
+                        'Your imaginary file is safe :)',
+                        'error'
+                    )
+                }
+            })
+        }
+
+
+    </script>
+
+    <!------------------------PAGE: Custom JS END------------------------------->
 @endpush

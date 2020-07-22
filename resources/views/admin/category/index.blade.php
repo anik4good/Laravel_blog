@@ -20,7 +20,7 @@
                     <div class="row">
 
                         <div class="col-3">
-                            <div class="card">
+                            <div class="card text-white bg-gradient-primary text-center">
                                 <div class="card-header">
                                     Add New Category
                                 </div>
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         <div class="col-9">
-                            <div class="card">
+                            <div class="card border-info text-center bg-transparent">
                                 <div class="card-header">
                                     <h4 class="card-title">Category List</h4>
                                 </div>
@@ -139,6 +139,7 @@
     <!-- BEGIN: Page JS-->
     <script src="{{asset('public/assets/backend')}}/app-assets/js/scripts/datatables/datatable.js"></script>
     <!-- END: Page JS-->
+
     {{--    sweet alert--}}
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/@sweetalert2/themes@3.2.0/wordpress-admin/wordpress-admin.css">

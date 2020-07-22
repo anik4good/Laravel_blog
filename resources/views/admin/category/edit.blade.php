@@ -19,7 +19,7 @@
                     <div class="row">
 
                         <div class="col-3">
-                            <div class="card">
+                            <div class="card text-white bg-gradient-primary text-center">
                                 <div class="card-header">
                                     Add New Category
                                 </div>
@@ -42,7 +42,7 @@
                                             <label class="btn btn-sm btn-primary ml-50 mb-50 mb-sm-0 cursor-pointer" for="account-upload">Upload new photo</label>
                                             <input type="file" id="account-upload" name="image" hidden>
                                         </div>
-                                        <a  href="{{route('admin.category.index')}}" class="btn btn-danger">BACK</a>
+                                        <button type="submit" class="btn btn-danger btn-block">UPDATE</button>
                                         <button type="submit" class="btn btn-primary">ADD</button>
                                     </form>
                                 </div>

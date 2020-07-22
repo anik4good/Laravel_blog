@@ -39,13 +39,9 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-
         $validatedData = $request->validate([
-            'name' => 'required',
-
-
+            'tag_name' => 'required'
         ]);
-
 
         $tag = new  Tag();
         $tag->name = $request->tag_name;
@@ -76,7 +72,8 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        //
+        $tag_all = Tag::latest()->get();
+        return view('admin.tag.edit',compact('tag_all','tag'));
     }
 
     /**
@@ -88,8 +85,16 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
-        //
+
+        $tag->name = $request->tag_name;
+        $tag->slug = str::slug($request->tag_name);
+        $tag->update();
+        Toastr::success('Data Successfully Updated');
+        return redirect()->back();
+
+
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -99,6 +104,11 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+
+
+        $tag->delete();
+        Toastr::success(' Data Successfully Deleted');
+        return redirect()->back();
+
     }
 }
