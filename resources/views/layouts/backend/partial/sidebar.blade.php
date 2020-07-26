@@ -20,13 +20,29 @@
                             class="badge badge badge-warning badge-pill float-right">2</span></a>
                 </li>
                 <li class=" nav-item {{Request::is('admin/tag') ? 'active': ''}} "><a
-                        href="{{route('admin.tag.index')}}"><i class="feather icon-zap"></i><span class="menu-title"
+                        href="{{route('admin.tag.index')}}"><i class="feather icon-tag"></i><span class="menu-title"
                                                                                                   data-i18n="Starter kit">Tags</span></a>
                 </li>
                 <li class=" nav-item {{Request::is('admin/category') ? 'active': ''}} "><a
-                        href="{{route('admin.category.index')}}"><i class="feather icon-zap"></i><span
+                        href="{{route('admin.category.index')}}"><i class="feather icon-align-justify"></i><span
                             class="menu-title"
                             data-i18n="Starter kit">Category</span></a>
+                </li>
+                <li class=" nav-item {{Request::is('admin/post') ? 'active': ''}} "><a
+                        href="{{route('admin.post.index')}}"><i class="feather icon-check-square"></i><span
+                            class="menu-title"
+                            data-i18n="Starter kit">Post</span></a>
+
+                    <ul class="menu-content">
+                        <li class=" nav-item {{Request::is('admin/post') ? 'active': ''}} "><a
+                                href="{{route('admin.post.index')}}"><i class="feather icon-check-square"></i><span
+                                    class="menu-title"
+                                    data-i18n="Starter kit">Dashboard</span></a>
+                        <li class=" nav-item {{Request::is('admin/post') ? 'active': ''}} "><a
+                                href="{{route('admin.pendingpost')}}"><i class="feather icon-check-square"></i><span
+                                    class="menu-title"
+                                    data-i18n="Starter kit">Pending Post</span></a>
+                    </ul>
                 </li>
                 <li class=" nav-item {{Request::is('admin/phone') ? 'active': ''}} "><a
                         href="{{route('admin.phone.index')}}"><i class="feather icon-zap"></i><span class="menu-title"
@@ -54,6 +70,11 @@
                         href="{{ route('author.dashboard')  }}"><i class="feather icon-home"></i><span
                             class="menu-title" data-i18n="Dashboard">Dashboard</span><span
                             class="badge badge badge-warning badge-pill float-right">2</span></a>
+                </li>
+                <li class=" nav-item {{Request::is('author/post') ? 'active': ''}} "><a
+                        href="{{route('author.post.index')}}"><i class="feather icon-check-square"></i><span
+                            class="menu-title"
+                            data-i18n="Starter kit">Post</span></a>
                 </li>
 
 

@@ -48,6 +48,7 @@
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>Tag Name</th>
+                                                    <th>Post Count</th>
                                                     <th>Created At</th>
                                                     <td>Action</td>
 
@@ -58,6 +59,7 @@
                                                     <tr>
                                                         <td>{{ $key + 1 }}</td>
                                                         <td>{{ $row->name }}</td>
+                                                        <td> <span class="badge badge-pill badge-glow badge-success mr-1 mb-1">{{$row->posts->count()}}</span></td>
                                                         <td class="text-info">{{ $row->created_at->diffForHumans() }}</td>
                                                         <td>
                                                             <a href="{{route('admin.tag.edit',$row->id)}}"><i
@@ -78,7 +80,8 @@
                                                 <tfoot>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Name</th>
+                                                    <th>Tag Name</th>
+                                                    <th>Post Count</th>
                                                     <th>Created At</th>
                                                     <td>Action</td>
                                                 </tr>

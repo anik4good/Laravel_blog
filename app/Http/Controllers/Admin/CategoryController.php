@@ -17,7 +17,7 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -25,6 +25,7 @@ class CategoryController extends Controller
 
         $category = Category::latest()->get();
         return view('admin.category.index',compact('category'));
+
     }
 
     /**

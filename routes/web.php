@@ -27,7 +27,11 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'
     route::get('dashboard','DashboardController@index')->name('dashboard');
     route::resource('tag','TagController');
     route::resource('category','CategoryController');
+    route::resource('post','PostController');
     route::resource('phone','PhoneController');
+    //pending post
+    route::get('pending','PostController@pending')->name('pendingpost');
+    route::put('/post/{id}/approve/','PostController@approve')->name('approve');
 
     //Profile
     route::get('profile','ProfileController@index')->name('profile');
@@ -41,6 +45,7 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'
 Route::group(['as'=>'author.','prefix'=>'author','namespace'=>'Author','middleware'=>['auth','author']],function ()
 {
     route::get('dashboard','DashboardController@index')->name('dashboard');
+    route::resource('post','PostController');
 
     //Profile
     route::get('profile','ProfileController@index')->name('profile');

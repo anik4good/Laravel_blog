@@ -64,6 +64,8 @@
           data-open="click"
           data-menu="vertical-menu-modern" data-col="2-columns">
 
+
+
     @include('layouts.backend.partial.header')
    @include('layouts.backend.partial.sidebar')
 
@@ -77,11 +79,8 @@
     <!-- END FOOTER LIGHT-->
 
 
-
-
     {{--    <!-- BEGIN: Vendor JS Common-->--}}
     <script src="{{asset('public/assets/backend')}}/app-assets/vendors/js/vendors.min.js"></script>
-    <script src="{{asset('public/assets/backend')}}/app-assets/vendors/js/forms/select/select2.full.min.js"></script>
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
