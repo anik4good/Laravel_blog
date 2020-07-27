@@ -4,12 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Category;
 use App\Http\Controllers\Controller;
+use App\Notifications\AuthorPostApproval;
+use App\Notifications\NewPostNotify;
 use App\Post;
+use App\Subscriber;
 use App\Tag;
 use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
@@ -101,6 +105,14 @@ class PostController extends Controller
         $post->save();
         $post->categories()->attach($request->categories);
         $post->tags()->attach($request->tags);
+        $subs = Subscriber::all();
+
+        foreach ($subs as $sub)
+        {
+            Notification::route('mail',$sub->email)->notify(new NewPostNotify($post));
+        }
+
+
         Toastr::success('Post Data Successfully Updated');
         return redirect()->route('admin.post.index');
     }
@@ -216,7 +228,7 @@ class PostController extends Controller
     public function pending()
     {
 
-        $pendingpost = Post::where('is_approved',false)->get();
+        $pendingpost = Post::where('is_approved', false)->get();
         return view('admin.post.pending', compact('pendingpost'));
     }
 
@@ -224,9 +236,15 @@ class PostController extends Controller
     {
 
         $post = Post::find($id);
-        if ($post->is_approved==0) {
+        if ($post->is_approved == 0) {
             $post->is_approved = 1;
             $post->update();
+            $post->user->notify(new AuthorPostApproval($post));
+            $subs = Subscriber::all();
+            foreach ($subs as $sub)
+            {
+                Notification::route('mail',$sub->email)->notify(new NewPostNotify($post));
+            }
             Toastr::error('Post Approved! ');
             return redirect()->back();
         } else {

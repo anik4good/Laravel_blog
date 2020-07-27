@@ -44,6 +44,11 @@
                                     data-i18n="Starter kit">Pending Post</span></a>
                     </ul>
                 </li>
+
+                <li class=" nav-item {{Request::is('admin/subscriber') ? 'active': ''}} "><a
+                        href="{{route('admin.subscriber.index')}}"><i class="feather icon-zap"></i><span class="menu-title"
+                                                                                                    data-i18n="Starter kit">Phone</span></a>
+                </li>
                 <li class=" nav-item {{Request::is('admin/phone') ? 'active': ''}} "><a
                         href="{{route('admin.phone.index')}}"><i class="feather icon-zap"></i><span class="menu-title"
                                                                                                     data-i18n="Starter kit">Phone</span></a>
