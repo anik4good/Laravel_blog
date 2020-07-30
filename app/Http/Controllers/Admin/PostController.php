@@ -28,6 +28,7 @@ class PostController extends Controller
     public function index()
     {
         $post = Post::latest()->get();
+
         return view('admin.post.index', compact('post'));
 
     }
@@ -179,7 +180,7 @@ class PostController extends Controller
                 Storage::disk('public')->delete('post/' . $post->image);
             }
             // image resize
-            $proimage = Image::make($image)->resize(300, 200)->stream();
+            $proimage = Image::make($image)->resize(350, 230)->stream();
             Storage::disk('public')->put('post/' . $imgname, $proimage);
 
             //            For Slider
@@ -217,8 +218,8 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //            //checking if images is already  there then delete
-        if (Storage::disk('public')->exists('category/' . $post->images)) {
-            Storage::disk('public')->delete('category/' . $post->images);
+        if (Storage::disk('public')->exists('category/' . $post->image)) {
+            Storage::disk('public')->delete('category/' . $post->image);
         }
         $post->delete();
         Toastr::error('Post Data deleted ');

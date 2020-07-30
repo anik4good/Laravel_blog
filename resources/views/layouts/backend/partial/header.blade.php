@@ -9,7 +9,9 @@
             <div class="navbar-collapse" id="navbar-mobile">
                 <div class="mr-auto float-left bookmark-wrapper d-flex align-items-center">
                     <ul class="nav navbar-nav">
-                        <li class="nav-item mobile-menu d-xl-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ficon feather icon-menu"></i></a></li>
+                        <li class="nav-item mobile-menu d-xl-none mr-auto"><a
+                                class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i
+                                    class="ficon feather icon-menu"></i></a></li>
                     </ul>
 
                 </div>
@@ -29,6 +31,8 @@
                                                                                      data-language="pt"><i
                                     class="flag-icon flag-icon-pt"></i> Portuguese</a></div>
                     </li>
+                    <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-expand"><i
+                                class="ficon feather icon-maximize"></i></a></li>
                     <li class="nav-item nav-search"><a class="nav-link nav-link-search"><i
                                 class="ficon feather icon-search"></i></a>
                         <div class="search-input">

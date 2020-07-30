@@ -20,6 +20,8 @@
     <link href="{{asset('public/assets/frontend')}}/common-css/swiper.css" rel="stylesheet">
 
     <link href="{{asset('public/assets/frontend')}}/common-css/ionicons.css" rel="stylesheet">
+    {{--    tooster--}}
+    <link rel="stylesheet" href="https://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 
 
     @stack('css')
@@ -34,17 +36,28 @@
 @include('layouts.frontend.partial.footer')
 
 
+
+
 <!-- SCIPTS -->
-
 <script src="{{asset('public/assets/frontend')}}/common-js/jquery-3.1.1.min.js"></script>
-
 <script src="{{asset('public/assets/frontend')}}/common-js/tether.min.js"></script>
-
 <script src="{{asset('public/assets/frontend')}}/common-js/bootstrap.js"></script>
-
 <script src="{{asset('public/assets/frontend')}}/common-js/swiper.js"></script>
-
 <script src="{{asset('public/assets/frontend')}}/common-js/scripts.js"></script>
+
+
+<script src="https://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+{!! Toastr::message() !!}
+<script>
+    @if ($errors->any())
+    @foreach ($errors->all() as $error)
+    toastr.error('{{$error}}');
+    @endforeach
+    @endif
+</script>
+
+@stack('js')
+
 </body>
 </html>
 

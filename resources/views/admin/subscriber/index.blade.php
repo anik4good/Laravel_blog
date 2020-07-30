@@ -5,6 +5,7 @@
     <!------------------------PAGE: Custom CSS START------------------------------->
     <link rel="stylesheet" type="text/css"
           href="{{asset('public/assets/backend')}}/app-assets/vendors/css/tables/datatable/datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/assets/backend')}}/app-assets/css/pages/data-list-view.css">
     <!------------------------PAGE: Custom CSS END------------------------------->
 @endpush
 
@@ -27,7 +28,7 @@
                                 <div class="card-content">
                                     <div class="card-body card-dashboard">
                                         <div class="table-responsive">
-                                            <table class="table table-striped dataex-html5-selectors">
+                                            <table class="table data-list-view">
                                                 <thead>
                                                 <tr>
                                                     <th>ID</th>
@@ -109,8 +110,8 @@
 
     <!-- BEGIN: Page JS-->
     <script src="{{asset('public/assets/backend')}}/app-assets/js/scripts/datatables/datatable.js"></script>
+    <script src="{{asset('public/assets/backend')}}/app-assets/js/scripts/ui/data-list-view.js"></script>
     <!-- END: Page JS-->
-
     {{--    sweet alert--}}
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/@sweetalert2/themes@3.2.0/wordpress-admin/wordpress-admin.css">

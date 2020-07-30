@@ -38,7 +38,7 @@
                                 href="{{route('admin.post.index')}}"><i class="feather icon-check-square"></i><span
                                     class="menu-title"
                                     data-i18n="Starter kit">Dashboard</span></a>
-                        <li class=" nav-item {{Request::is('admin/post') ? 'active': ''}} "><a
+                        <li class=" nav-item {{Request::is('admin/pending') ? 'active': ''}} "><a
                                 href="{{route('admin.pendingpost')}}"><i class="feather icon-check-square"></i><span
                                     class="menu-title"
                                     data-i18n="Starter kit">Pending Post</span></a>
@@ -46,15 +46,19 @@
                 </li>
 
                 <li class=" nav-item {{Request::is('admin/subscriber') ? 'active': ''}} "><a
-                        href="{{route('admin.subscriber.index')}}"><i class="feather icon-zap"></i><span class="menu-title"
-                                                                                                    data-i18n="Starter kit">Phone</span></a>
+                        href="{{route('admin.subscriber.index')}}"><i class="feather icon-users"></i><span class="menu-title"
+                                                                                                    data-i18n="Starter kit">Subscribers</span></a>
                 </li>
                 <li class=" nav-item {{Request::is('admin/phone') ? 'active': ''}} "><a
-                        href="{{route('admin.phone.index')}}"><i class="feather icon-zap"></i><span class="menu-title"
+                        href="{{route('admin.phone.index')}}"><i class="feather icon-phone"></i><span class="menu-title"
                                                                                                     data-i18n="Starter kit">Phone</span></a>
                 </li>
 
-
+                <li class=" nav-item {{Request::is('admin/favourite.post') ? 'active': ''}} "><a
+                        href="{{route('admin.favourite.post')}}"><i class="feather icon-check-square"></i><span
+                            class="menu-title"
+                            data-i18n="Starter kit">Favourite Post</span></a>
+                </li>
                 {{--Common menu--}}
                 <li class=" nav-item"><a
                         href="https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/documentation"><i
@@ -81,7 +85,11 @@
                             class="menu-title"
                             data-i18n="Starter kit">Post</span></a>
                 </li>
-
+                <li class=" nav-item {{Request::is('author/favourite.post') ? 'active': ''}} "><a
+                        href="{{route('author.favourite.post')}}"><i class="feather icon-check-square"></i><span
+                            class="menu-title"
+                            data-i18n="Starter kit">Favourite Post</span></a>
+                </li>
 
 
 

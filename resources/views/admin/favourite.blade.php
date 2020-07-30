@@ -46,7 +46,7 @@
 
                                 <div class="position-relative d-inline-block mr-2">
                                     Total Posts
-                                    <span class="badge badge-pill badge-info badge-up">{{count($post)}}</span>
+                                    <span class="badge badge-pill badge-info badge-up">{{count($favourite_posts)}}</span>
                                 </div>
                             </div>
                         </div>
@@ -59,80 +59,49 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>USER ID</th>
+                                <th>Author Name</th>
                                 <th>Tittle</th>
+                                <th>Category</th>
                                 <th>Image</th>
                                 <th>Views</th>
-                                <th>Publish Status</th>
-                                <th>Approved Status</th>
+                                <th>Favourite Count</th>
                                 <th>Created At</th>
                                 <td>Action</td>
 
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($post as $key=>$row)
+                            @foreach($favourite_posts as $key=>$row)
                                 <tr>
                                     <td class="product-name">{{ $key + 1 }}</td>
                                     <td class="product-name">{{ $row->user->name }}</td>
                                     <td class="product-name">{{ Str::limit($row->tittle,10)}}</td>
+                                    <td class="product-name">@foreach($row->categories as $postcat)
+                                            {{$postcat->name.(!$postcat->count()  == 0 ? ',' : ' ')}}
+                                        @endforeach</td>
                                     <td><img
                                             src="{{ asset('/public/storage/post')}}/{{$row->image }}"
                                             class="rounded mr-75" alt="profile image" height="64"
                                             width="64"></td>
                                     <td class="product-name">{{ $row->view_count }}</td>
 
-                                    <td>@if ( $row->status === 1)
-                                            <div class="chip chip-warning">
-                                                <div class="chip-body">
-                                                    <div
-                                                        class="chip-text">Published
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @else
-                                            <div class="chip chip-warning">
-                                                <div class="chip-body">
-                                                    <div
-                                                        class="chip-text">Not Published
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
+                                    <td>
+                                        <span class="badge badge-pill badge-info">{{$row->favourite_to_users->count()}}</span>
+
                                     </td>
-                                    <td>@if ($row->is_approved === 1)
-                                            <div class="chip chip-warning">
-                                                <div class="chip-body">
-                                                    <div
-                                                        class="chip-text">Approved
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @else
-                                            <div class="chip chip-warning">
-                                                <div class="chip-body">
-                                                    <div
-                                                        class="chip-text">Pending
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    </td>
+
                                     <td class="product-name">{{ $row->created_at->diffForHumans() }}</td>
                                     <td class="product-action">
                                         <a href="{{route('admin.post.show',$row->id)}}"
                                            target="_blank"><i
                                                 class="feather icon-eye"> </i></a>
-                                        <a href="{{route('admin.post.edit',$row->id)}}"><i
-                                                class="feather icon-edit"> </i></a>
-
                                         <a onclick="deleteid({{$row->id}})"><i
                                                 class="feather icon-trash"></i></a>
                                         <form id="delete-id-{{$row->id}}"
-                                              action="{{route('admin.post.destroy',$row->id)}}"
+                                              action="{{route('post.favourite.add',$row->id)}}"
                                               method="post" style="display: none">
                                             @csrf
-                                            @method('DELETE')
+
                                         </form>
                                     </td>
                                 </tr>

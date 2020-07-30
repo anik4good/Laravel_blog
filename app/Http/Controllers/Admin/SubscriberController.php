@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Subscriber;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
 class SubscriberController extends Controller
@@ -37,7 +38,15 @@ class SubscriberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'email' => 'required',
+
+        ]);
+       $sub = new Subscriber();
+       $sub->email = $request->email;
+        $sub->save();
+        Toastr::success('Thank you For Your Subcription,You will get notify for each post publish on Our Blog ');
+        return redirect()->back();
     }
 
     /**

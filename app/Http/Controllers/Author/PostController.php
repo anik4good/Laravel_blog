@@ -114,11 +114,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        if($post->user_id != Auth::id())
-        {
-            Toastr::error('No Permission ');
-            return redirect()->back();
-        }
+
         return view('author.post.view', compact('post'));
     }
 

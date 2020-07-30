@@ -24,7 +24,7 @@ class CategoryController extends Controller
 
 
         $category = Category::latest()->get();
-        return view('admin.category.index',compact('category'));
+        return view('admin.category.index', compact('category'));
 
     }
 
@@ -41,7 +41,7 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -55,30 +55,36 @@ class CategoryController extends Controller
         $slug = str::slug($request->name);
 
         //checking image if uploaded
- if (isset($image)) {
-            $datetime= Carbon::now()->toDateString();
+        if (isset($image)) {
+            $datetime = Carbon::now()->toDateString();
             $ext = str::slug($image->getClientOriginalExtension());
-            $imgname = $slug.'-'.$datetime.'-'.Str::random(10).'.'.$ext;
+            $imgname = $slug . '-' . $datetime . '-' . Str::random(10) . '.' . $ext;
 
 //            For category
             //Creating a directory if not exsits
             if (!Storage::disk('public')->exists('category')) {
                 Storage::disk('public')->makeDirectory('category');
             }
-        // image resize
-           $proimage =  Image::make($image)->resize(300, 200)->stream();
-           Storage::disk('public')->put('category/'.$imgname,$proimage );
+            // image resize
+            $proimage = Image::make($image)->resize(400, 250)->stream();
+            Storage::disk('public')->put('category/' . $imgname, $proimage);
+
 
             //            For Slider
-      }
-        else
-        {
+            if (!Storage::disk('public')->exists('category/slider')) {
+                Storage::disk('public')->makeDirectory('category/slider');
+            }
+
+            $slider = Image::make($image)->resize(500, 333)->stream();
+            Storage::disk('public')->put('category/slider/' . $imgname, $slider);
+
+        } else {
 //             put default image if no image select
             $imgname = 'default.png';
         }
 
         //now saving all to database
-        $category =  new Category();
+        $category = new Category();
         $category->name = $request->name;
         $category->images = $imgname;
         $category->slug = $slug;
@@ -92,7 +98,7 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -103,22 +109,22 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $category_all = Category::latest()->get();
         $category_single = Category::find($id);
-        return view('admin.category.edit',compact('category_all','category_single'));
+        return view('admin.category.edit', compact('category_all', 'category_single'));
 
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -130,13 +136,13 @@ class CategoryController extends Controller
         ]);
         $image = $request->file('image');
         $slug = str::slug($request->name);
-        $category= Category::findOrFail($id);
+        $category = Category::findOrFail($id);
 
         //checking image if uploaded
         if (isset($image)) {
-            $datetime= Carbon::now()->toDateString();
+            $datetime = Carbon::now()->toDateString();
             $ext = str::slug($image->getClientOriginalExtension());
-            $imgname = $slug.'-'.$datetime.'-'.Str::random(10).'.'.$ext;
+            $imgname = $slug . '-' . $datetime . '-' . Str::random(10) . '.' . $ext;
 
 //            For category
             //Creating a directory if not exsits
@@ -145,19 +151,28 @@ class CategoryController extends Controller
             }
 
 //            //checking if images is already  there then delete
-            if (Storage::disk('public')->exists('category/'.$category->images)) {
-                Storage::disk('public')->delete('category/'.$category->images);
+            if (Storage::disk('public')->exists('category/' . $category->images)) {
+                Storage::disk('public')->delete('category/' . $category->images);
             }
-
             // image resize
-            $proimage =  Image::make($image)->resize(300, 200)->stream();
-            Storage::disk('public')->put('category/'.$imgname,$proimage );
+            $proimage = Image::make($image)->resize(400, 250)->stream();
+            Storage::disk('public')->put('category/' . $imgname, $proimage);
+//            For category
+
 
             //            For Slider
+            if (!Storage::disk('public')->exists('category/slider')) {
+                Storage::disk('public')->makeDirectory('category/slider');
+            }
+            if (Storage::disk('public')->exists('category/slider/' . $category->images)) {
+                Storage::disk('public')->delete('category/slider/' . $category->images);
+            }
+            $slider = Image::make($image)->resize(500, 333)->stream();
+            Storage::disk('public')->put('category/slider/' . $imgname, $slider);
+            //            For Slider
 
-        }
-        else
-        {
+
+        } else {
 //             put default image if no image select
             $imgname = $category->images;
         }
@@ -174,7 +189,7 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -182,8 +197,11 @@ class CategoryController extends Controller
         $category_single = Category::findOrFail($id);
 
         //            //checking if images is already  there then delete
-        if (Storage::disk('public')->exists('category/'.$category_single->images)) {
-            Storage::disk('public')->delete('category/'.$category_single->images);
+        if (Storage::disk('public')->exists('category/' . $category_single->images)) {
+            Storage::disk('public')->delete('category/' . $category_single->images);
+        }
+        if (Storage::disk('public')->exists('category/slider/' . $category_single->images)) {
+            Storage::disk('public')->delete('category/slider/' . $category_single->images);
         }
         $category_single->delete();
         Toastr::success(' Data Successfully Deleted');

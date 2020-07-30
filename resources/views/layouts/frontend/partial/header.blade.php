@@ -9,7 +9,20 @@
             <li><a href="#">Home</a></li>
             <li><a href="#">Categories</a></li>
             <li><a href="#">Features</a></li>
-            <li><a href="{{route('login')}}">Login</a></li>
+            <li>
+                @guest
+                    <a href="{{route('login')}}">Login</a>
+                @else
+                    @if(Auth::user()->id ==1)
+                        <a href="{{route('admin.dashboard')}}" target="_blank">Dashboard</a>
+                    @else
+                        <a href="{{route('author.dashboard')}}" target="_blank">Dashboard</a>
+                    @endif
+
+                @endguest
+
+
+            </li>
 
         </ul><!-- main-menu -->
 
