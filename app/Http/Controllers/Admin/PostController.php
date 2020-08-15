@@ -206,7 +206,7 @@ class PostController extends Controller
         $post->categories()->sync($request->categories);
         $post->tags()->sync($request->tags);
         Toastr::success('Post Data Updated ');
-        return redirect()->back();
+        return redirect()->route('admin.post.index');
     }
 
     /**

@@ -1,5 +1,5 @@
 @extends('layouts.backend.app')
-@section('tittle', 'Post ')
+@section('tittle', 'Comments ')
 
 @push('css')
     <!------------------------PAGE: Custom CSS START------------------------------->
@@ -35,107 +35,94 @@
     <div class="app-content content">
         <div class="content-wrapper">
             <div class="content-body">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <a href="{{route('admin.post.create')}}"
-                                   class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light">Add New
-                                    Post</a>
 
-
-                                <div class="position-relative d-inline-block mr-2">
-                                    Total Posts
-                                    <span class="badge badge-pill badge-info badge-up">{{count($post)}}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <!-- Column selectors with Export Options and print table -->
                 <section id="data-thumb-view" class="data-thumb-view-header">
                     <div class="table-responsive">
-                        <table class="table data-thumb-view dataex-html5-selectors">
+                        <table class="table">
                             <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>USER ID</th>
-                                <th>Tittle</th>
-                                <th>Image</th>
-                                <th>Views</th>
-                                <th>Publish Status</th>
-                                <th>Approved Status</th>
-                                <th>Created At</th>
+                    
+                                <th>Comments Info</th>
+                                <th>post Info</th>
                                 <td>Action</td>
 
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($post as $key=>$row)
+                            @foreach($posts as $post)
+                            @foreach($post->comments as $key=>$comment)
                                 <tr>
-                                    <td class="product-name">{{ $key + 1 }}</td>
-                                    <td class="product-name">{{ $row->user->name }}</td>
-                                    <td class="product-name">{{ Str::limit($row->tittle,10)}}</td>
-                                    <td><img
-                                            src="{{ asset('/public/storage/post')}}/{{$row->image }}"
-                                            class="rounded mr-75" alt="profile image" height="64"
-                                            width="64"></td>
-                                    <td class="product-name">{{ $row->view_count }}</td>
-
-                                    <td>@if ( $row->status === 1)
-                                            <div class="chip chip-success">
-                                                <div class="chip-body">
-                                                    <div
-                                                        class="chip-text">Published
+                                   
+                                    <td class="product-name">
+                                        <div class="row">
+                                            <div class="col-lg-10 col-sm-6 col-12">
+                                                <div class="card">
+                                                    <div class="card-header d-flex align-items-start pb-1">
+                                                        <div class="avatar bg-rgba-primary p-50 m-0">
+                                                            <div class="avatar-content">
+                                                                <img
+                                                                src="{{ asset('/public/storage/profile')}}/{{$comment->user->image }}"
+                                                                class="rounded" alt="profile image" height="64"
+                                                                width="64">
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <p>{{$comment->comment }}</p>
+                                                            <p>Commented by <span class="badge badge-pill badge-success">{{$comment->user->name }}</span><span class="badge badge-pill badge-info badge-up">{{$comment->created_at->diffForHumans() }}</span></p>
+                                                            <a href="{{route('post.single',$comment->post->slug)}}">Reply</a>
+                                                           
+                                                        </div>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
-                                        @else
-                                            <div class="chip chip-warning">
-                                                <div class="chip-body">
-                                                    <div
-                                                        class="chip-text">Not Published
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
+                                        </div>
                                     </td>
-                                    <td>@if ($row->is_approved === 1)
-                                            <div class="chip chip-success">
-                                                <div class="chip-body">
-                                                    <div
-                                                        class="chip-text">Approved
+                                    
+                                    <td class="product-name">
+                                        <div class="row">
+                                            <div class="col-lg-10 col-sm-6 col-12">
+                                                <div class="card">
+                                                    <div class="card-header d-flex align-items-start pb-0">
+                                                        <div class="avatar bg-rgba-primary p-50 m-0">
+                                                            <div class="avatar-content">
+                                                                <img
+                                                                src="{{ asset('/public/storage/profile')}}/{{$comment->  ->user->image }}"
+                                                                class="rounded" alt="profile image" height="64"
+                                                                width="64">
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <a href="{{route('post.single',$comment->post->slug)}}">{{Str::limit($comment->post->tittle, 30) }}</a>
+                                                            <p>Post Created by <span class="badge badge-pill badge-success">{{$comment->post->user->name }}</span><span class="badge badge-pill badge-info badge-up">{{$comment->post->created_at->diffForHumans() }}</span></p>
+                                                        </div>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
-                                        @else
-                                            <div class="chip chip-warning">
-                                                <div class="chip-body">
-                                                    <div
-                                                        class="chip-text">Pending
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
+                                        </div>
                                     </td>
-                                    <td class="product-name">{{ $row->created_at->diffForHumans() }}</td>
                                     <td class="product-action">
-                                        <a href="{{route('admin.post.show',$row->id)}}"
-                                           target="_blank"><i
-                                                class="feather icon-eye"> </i></a>
-                                        <a href="{{route('admin.post.edit',$row->id)}}"><i
-                                                class="feather icon-edit"> </i></a>
-
-                                        <a onclick="deleteid({{$row->id}})"><i
-                                                class="feather icon-trash"></i></a>
-                                        <form id="delete-id-{{$row->id}}"
-                                              action="{{route('admin.post.destroy',$row->id)}}"
-                                              method="post" style="display: none">
-                                            @csrf
-                                            @method('DELETE')
-                                        </form>
+                                        <div class="row">
+                                            <div class="col-lg-8 col-sm-6 col-12">
+                                            
+                                                    <a onclick="deleteid({{$comment->id}})"><i
+                                                        class="feather icon-trash"></i></a>
+                                                <form id="delete-id-{{$comment->id}}"
+                                                      action="{{route('author.comment.destroy',$comment->id)}}"
+                                                      method="post" style="display: none">
+                                                    @csrf
+                                                  
+        
+                                                </form>
+                                               
+                                            </div>
+                                        </div>
+                                      
                                     </td>
                                 </tr>
+                                @endforeach
                             @endforeach
                             </tbody>
                         </table>

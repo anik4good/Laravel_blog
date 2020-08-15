@@ -23,15 +23,10 @@
           href="{{asset('public/assets/backend')}}/app-assets/css/pages/data-list-view.css">
     <!-- END: Page CSS-->
 
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/tables/ag-grid/ag-grid.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/tables/ag-grid/ag-theme-material.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/aggrid.css">
     <!------------------------PAGE: Custom CSS END------------------------------->
 @endpush
 
 @section('content')
-
-
     <!-- BEGIN: Content-->
     <div class="app-content content">
         <div class="content-wrapper">
@@ -64,8 +59,7 @@
                                 <th>ID</th>
                                 <th>Category images</th>
                                 <th>Category Name</th>
-                                <th>Product Count</th>
-                                <th>Category Status</th>
+                                <th>posts Count</th>
                                 <th>Created At</th>
                                 <td>Action</td>
 
@@ -82,14 +76,7 @@
                                     </td>
                                     <td class="product-name">{{ $row->name }}</td>
                                     <td class="product-name">{{$row->posts->count()}}</td>
-                                    <td>@if ( $row->status === 1)
-                                        <span
-                                            class="badge badge-pill badge-glow badge-success mr-1 mb-1">Active</span>
-                                    @else
-                                        <span
-                                            class="badge badge-pill badge-glow badge-danger mr-1 mb-1">Disable</span>
-                                    @endif
-                                </td>
+
                                     <td class="text-info">{{ $row->created_at->diffForHumans() }}</td>
                                     <td>
                                     <a href="{{route('admin.category.edit',$row->id)}}"><i
@@ -103,7 +90,6 @@
                                         @method('DELETE')
                                     </form>
                                     </td>
-i
                                 </tr>
                             @endforeach
                             </tbody>

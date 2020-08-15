@@ -1,47 +1,24 @@
 @extends('layouts.frontend.app')
-@section('tittle','Homepage ')
+@section('tittle', 'All_Posts')
+
 @push('css')
-    {{--    for Frontpage css --}}
-    <link href="{{asset('public/assets/frontend')}}/front-page-category/css/styles.css" rel="stylesheet">
+    <!------------------------Pages Custom CSS START------------------------------->
 
-    <link href="{{asset('public/assets/frontend')}}/front-page-category/css/responsive.css" rel="stylesheet">
+    <link href="{{asset('public/assets/frontend')}}/category/css/styles.css" rel="stylesheet">
 
+    <link href="{{asset('public/assets/frontend')}}/category/css/responsive.css" rel="stylesheet">
     <style>
-        .fav_post{
+        .fav_post {
             color: blue;
         }
     </style>
-
+    <!------------------------Pages Custom CSS END------------------------------->
 @endpush
 
 @section('content')
-    <div class="main-slider">
-        <div class="swiper-container position-static" data-slide-effect="slide" data-autoheight="false"
-             data-swiper-speed="500" data-swiper-autoplay="10000" data-swiper-margin="0" data-swiper-slides-per-view="4"
-             data-swiper-breakpoints="true" data-swiper-loop="true">
-            <div class="swiper-wrapper">
-                @foreach($categories as $category)
-                    <div class="swiper-slide">
-                        <a class="slider-category" href="{{ route('category.post',$category->slug) }}">
-                            <div class="blog-image"><img
-                                    src="{{ asset('/public/storage/category')}}/{{$category->images }}"
-                                    alt="{{$category->name }}"></div>
-                            <div class="category">
-                                <div class="display-table center-text">
-                                    <div class="display-table-cell">
-                                        <h3><b>{{$category->name }}</b></h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div><!-- swiper-slide -->
-                @endforeach
-            </div><!-- swiper-wrapper -->
-
-        </div><!-- swiper-container -->
-
+    <div class="slider display-table center-text">
+        <h1 class="title display-table-cell"><b>ALL POSTS</b></h1>
     </div><!-- slider -->
-
     <section class="blog-area section">
         <div class="container">
 
@@ -91,11 +68,23 @@
 
 
             </div><!-- row -->
+{{$posts->links()}}
 
-            <a class="load-more-btn" href="#"><b>LOAD MORE</b></a>
 
         </div><!-- container -->
     </section><!-- section -->
+
+
+
+
+
+
+
+
 @endsection
 
+@push('js')
+    <!------------------------Pages Custom Script START------------------------------->
 
+    <!------------------------Pages Custom Script END------------------------------->
+@endpush

@@ -47,7 +47,7 @@ class ProfileController extends Controller
             }
 
             // image resize
-            $proimage = Image::make($image)->resize(300, 200)->stream();
+            $proimage = Image::make($image)->resize(250, 250)->stream();
             Storage::disk('public')->put('profile/' . $imgname, $proimage);
 
         } else {

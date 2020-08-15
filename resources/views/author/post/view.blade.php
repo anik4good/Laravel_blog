@@ -17,7 +17,7 @@
                 <!-- Content types section start -->
                 <div class="row">
                     <div class="col-xl-6 col-md-6 col-sm-12">
-                        <a href="{{route('admin.post.index')}}"
+                        <a href="{{route('author.post.index')}}"
                            class="btn bg-gradient-info mr-1 mb-1 waves-effect waves-light">Back</a>
                     </div>
                     <div class="col-xl-6 col-md-6 col-sm-12">

@@ -21,7 +21,7 @@
     <div class="app-content content">
         <div class="content-wrapper">
             <div class="content-body">
-                <form action="{{route('admin.post.update',$post->id)}}" method="post"
+                <form action="{{route('author.post.update',$post->id)}}" method="post"
                       enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
@@ -129,7 +129,7 @@
                                                                 class="btn btn-primary mr-1 waves-effect waves-light">
                                                             Update
                                                         </button>
-                                                        <a href="{{route('admin.post.show',$post->id)}}"
+                                                        <a href="{{route('author.post.show',$post->id)}}"
                                                            class="btn btn-outline-warning waves-effect waves-light" target="_blank">
                                                             View
                                                         </a>

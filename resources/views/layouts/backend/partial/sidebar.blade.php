@@ -12,8 +12,13 @@
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            <li class=" nav-item"><a
+                href="{{ route('homepage') }}" target="_blank"><i class="feather icon-eye"></i><span
+                    class="menu-title" data-i18n="Dashboard">View Site</span></a>
+        </li>
             {{--            Start Admin menu--}}
             @if(Request::is('admin*'))
+           
                 <li class=" nav-item {{Request::is('admin/dashboard') ? 'active': ''}}"><a
                         href="{{ route('admin.dashboard')  }}"><i class="feather icon-home"></i><span
                             class="menu-title" data-i18n="Dashboard">Dashboard</span><span
@@ -59,6 +64,12 @@
                             class="menu-title"
                             data-i18n="Starter kit">Favourite Post</span></a>
                 </li>
+
+                <li class=" nav-item {{Request::is('admin/comments') ? 'active': ''}} "><a
+                        href="{{route('admin.comment.index')}}"><i class="feather icon-check-square"></i><span
+                            class="menu-title"
+                            data-i18n="Starter kit">Comments</span></a>
+                </li>
                 {{--Common menu--}}
                 <li class=" nav-item"><a
                         href="https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/documentation"><i
@@ -92,7 +103,11 @@
                 </li>
 
 
-
+                <li class=" nav-item {{Request::is('author/comments') ? 'active': ''}} "><a
+                    href="{{route('author.comment.index')}}"><i class="feather icon-check-square"></i><span
+                        class="menu-title"
+                        data-i18n="Starter kit">Comments</span></a>
+            </li>
                 {{--Common menu--}}
                 <li class=" nav-item"><a
                         href="https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/documentation"><i

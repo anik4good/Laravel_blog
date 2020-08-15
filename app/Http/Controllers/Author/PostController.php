@@ -103,7 +103,7 @@ class PostController extends Controller
         $post->categories()->attach($request->categories);
         $post->tags()->attach($request->tags);
         Toastr::success('Post Data Successfully Updated');
-        return redirect()->route('admin.post.index');
+        return redirect()->route('author.post.index');
     }
 
     /**
@@ -131,6 +131,8 @@ class PostController extends Controller
             Toastr::error('No Permission ');
             return redirect()->back();
         }
+
+
         $categories = Category::all();
         $tags = Tag::all();
         return view('author.post.edit', compact('post', 'categories', 'tags'));
@@ -206,7 +208,7 @@ class PostController extends Controller
         $post->categories()->sync($request->categories);
         $post->tags()->sync($request->tags);
         Toastr::success('Post Data Updated ');
-        return redirect()->back();
+        return redirect()->route('author.post.index');
     }
 
     /**

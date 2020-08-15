@@ -6,9 +6,9 @@
         <div class="menu-nav-icon" data-nav-menu="#main-menu"><i class="ion-navicon"></i></div>
 
         <ul class="main-menu visible-on-click" id="main-menu">
-            <li><a href="#">Home</a></li>
+            <li><a href="{{route('homepage')}}">Home</a></li>
             <li><a href="#">Categories</a></li>
-            <li><a href="#">Features</a></li>
+            <li><a href="{{route('post.all')}}">posts</a></li>
             <li>
                 @guest
                     <a href="{{route('login')}}">Login</a>
@@ -27,9 +27,9 @@
         </ul><!-- main-menu -->
 
         <div class="src-area">
-            <form>
+            <form method="GET" action="{{route('post.search')}}">
                 <button class="src-btn" type="submit"><i class="ion-ios-search-strong"></i></button>
-                <input class="src-input" type="text" placeholder="Type of search">
+                <input class="src-input" value="{{isset($query)? $query:''}}" type="text" placeholder="Type of search" name="query">
             </form>
         </div>
 

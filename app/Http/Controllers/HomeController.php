@@ -24,21 +24,11 @@ class HomeController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $posts = Post::latest()->take(6)->get();
+        $posts = Post::latest()->approved()->status()->take(6)->get();
         return view('welcome', compact('categories', 'posts'));
     }
 
-    public function singlepost($slug)
-    {
 
-        $allposts = Post::latest()->take(6)->get();
-        $posts = Post::where('slug',$slug)->get();
-        $categories = Category::all();
-        $tags = Tag::all();
-        return view('post', compact('posts', 'categories', 'tags','allposts'));
-
-
-    }
 //    private function sendMessage($message, $recipients)
 //    {
 //        $account_sid = getenv("TWILIO_SID");

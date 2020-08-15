@@ -67,7 +67,7 @@
                                                         <div class="vs-checkbox-con vs-checkbox-success">
                                                             <input
                                                                 {{$post->status==true?'checked=""': ''}} type="checkbox"
-                                                                name="status" value="1" required>
+                                                                name="status" value="1">
                                                             <span class="vs-checkbox vs-checkbox-lg">
                                                                       <span class="vs-checkbox--check">
                                                                         <i class="vs-icon feather icon-check"></i>

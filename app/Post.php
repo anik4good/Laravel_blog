@@ -26,4 +26,19 @@ class Post extends Model
     {
         return $this->belongsToMany(User::class)->withTimestamps();
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function scopeApproved($query)
+    {
+        return $query->where('is_approved', 1);
+    }
+
+    public function scopeStatus($query)
+    {
+        return $query->where('status', 1);
+    }
 }

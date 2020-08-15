@@ -16,16 +16,22 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', function () {
 //    return view('welcome');
 //});
-Route::get('/', 'HomeController@index');
-Route::get('/post/{slug}', 'HomeController@singlepost')->name('post.single');
+Route::get('/', 'HomeController@index')->name('homepage');
+Route::get('/posts', 'PostController@allpost')->name('post.all');
+Route::get('/post/{slug}', 'PostController@singlepost')->name('post.single');
+Route::get('/category/{slug}', 'PostController@postbycategory')->name('category.post');
+Route::get('/tag/{slug}', 'PostController@postbytag')->name('tag.post');
+Route::get('/search', 'SearchController@search')->name('post.search');
 
 Auth::routes();
-Auth::routes(['verify' => false]);
+//Auth::routes(['verify' => true]);
 
 
 
 Route::group(['middleware'=>['auth']],function(){
 route::post('favourite/{post}','FavouriteController@add')->name('post.favourite.add');
+    route::post('comment/{post}','CommentController@store')->name('post.comment.store');
+
 });
 
 Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admin']],function ()
@@ -43,6 +49,10 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'
     //favourite post
     route::get('favourite','FavouriteController@index')->name('favourite.post');
 
+    //Commments
+    route::get('comments/','CommentController@index')->name('comment.index');
+    route::post('comment/{id}','CommentController@destroy')->name('comment.destroy');
+
     //Profile
     route::get('profile','ProfileController@index')->name('profile');
     route::put('profile-update','ProfileController@updateprofile')->name('profile.update');
@@ -59,6 +69,11 @@ Route::group(['as'=>'author.','prefix'=>'author','namespace'=>'Author','middlewa
 
     //favourite post
     route::get('favourite','FavouriteController@index')->name('favourite.post');
+
+     //Commments
+     route::get('comments/','CommentController@index')->name('comment.index');
+     route::post('comment/{id}','CommentController@destroy')->name('comment.destroy');
+
     //Profile
     route::get('profile','ProfileController@index')->name('profile');
     route::put('profile-update','ProfileController@updateprofile')->name('profile.update');
@@ -66,6 +81,11 @@ Route::group(['as'=>'author.','prefix'=>'author','namespace'=>'Author','middlewa
 });
 
 
+View::composer('layouts.frontend.partial.footer',function ($view)
+{
+$categories = \App\Category::all();
+$view->with('categories',$categories);
+});
 
 
 Route::get('/clear-cache', function() {
