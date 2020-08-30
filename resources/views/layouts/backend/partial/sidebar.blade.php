@@ -5,20 +5,25 @@
             <li class="nav-item mr-auto"><a class="navbar-brand"
                                             href="">
                     <div class="brand-logo"></div>
-                    <h2 class="brand-text mb-0">LARAVEL BLOG</h2>
+                    <h2 class="brand-text mb-0">BLOG</h2>
                 </a></li>
+            <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i
+                        class="icon-x d-block d-xl-none font-medium-4 primary toggle-icon feather icon-disc"></i><i
+                        class="toggle-icon font-medium-4 d-none d-xl-block primary feather icon-disc"
+                        data-ticon="icon-disc"></i></a></li>
         </ul>
     </div>
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <li class=" nav-item"><a
-                href="{{ route('homepage') }}" target="_blank"><i class="feather icon-eye"></i><span
-                    class="menu-title" data-i18n="Dashboard">View Site</span></a>
-        </li>
+                    href="{{ route('homepage') }}" target="_blank"><i class="feather icon-eye"></i><span
+                        class="menu-title" data-i18n="Dashboard">View Site</span></a>
+            </li>
+
             {{--            Start Admin menu--}}
             @if(Request::is('admin*'))
-           
+
                 <li class=" nav-item {{Request::is('admin/dashboard') ? 'active': ''}}"><a
                         href="{{ route('admin.dashboard')  }}"><i class="feather icon-home"></i><span
                             class="menu-title" data-i18n="Dashboard">Dashboard</span><span
@@ -51,12 +56,13 @@
                 </li>
 
                 <li class=" nav-item {{Request::is('admin/subscriber') ? 'active': ''}} "><a
-                        href="{{route('admin.subscriber.index')}}"><i class="feather icon-users"></i><span class="menu-title"
-                                                                                                    data-i18n="Starter kit">Subscribers</span></a>
+                        href="{{route('admin.subscriber.index')}}"><i class="feather icon-users"></i><span
+                            class="menu-title"
+                            data-i18n="Starter kit">Subscribers</span></a>
                 </li>
                 <li class=" nav-item {{Request::is('admin/phone') ? 'active': ''}} "><a
                         href="{{route('admin.phone.index')}}"><i class="feather icon-phone"></i><span class="menu-title"
-                                                                                                    data-i18n="Starter kit">Phone</span></a>
+                                                                                                      data-i18n="Starter kit">Phone</span></a>
                 </li>
 
                 <li class=" nav-item {{Request::is('admin/favourite.post') ? 'active': ''}} "><a
@@ -104,10 +110,10 @@
 
 
                 <li class=" nav-item {{Request::is('author/comments') ? 'active': ''}} "><a
-                    href="{{route('author.comment.index')}}"><i class="feather icon-check-square"></i><span
-                        class="menu-title"
-                        data-i18n="Starter kit">Comments</span></a>
-            </li>
+                        href="{{route('author.comment.index')}}"><i class="feather icon-check-square"></i><span
+                            class="menu-title"
+                            data-i18n="Starter kit">Comments</span></a>
+                </li>
                 {{--Common menu--}}
                 <li class=" nav-item"><a
                         href="https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/documentation"><i

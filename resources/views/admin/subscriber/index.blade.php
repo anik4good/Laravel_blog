@@ -20,15 +20,16 @@
                 <section id="column-selectors">
                     <div class="row">
 
+
                         <div class="col-12">
                             <div class="card border-info text-center bg-transparent">
                                 <div class="card-header">
-                                    <h4 class="card-title">Category List</h4>
+                                    <h4 class="card-title">Tag List</h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body card-dashboard">
                                         <div class="table-responsive">
-                                            <table class="table data-list-view">
+                                            <table class="table table-striped dataex-html5-selectors">
                                                 <thead>
                                                 <tr>
                                                     <th>ID</th>

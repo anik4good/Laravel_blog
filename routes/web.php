@@ -58,6 +58,9 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'
     route::put('profile-update','ProfileController@updateprofile')->name('profile.update');
     route::put('password-update','ProfileController@updatepassword')->name('password.update');
 
+//Author show in admin
+    route::get('author','AuthorController@index')->name('author.dashboard.show');
+
 });
 
 

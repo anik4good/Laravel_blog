@@ -6,10 +6,6 @@
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css"
           href="{{asset('public/assets/backend')}}/app-assets/vendors/css/tables/datatable/datatables.min.css">
-    <link rel="stylesheet" type="text/css"
-          href="{{asset('public/assets/backend')}}/app-assets/vendors/css/file-uploaders/dropzone.min.css">
-    <link rel="stylesheet" type="text/css"
-          href="{{asset('public/assets/backend')}}/app-assets/vendors/css/tables/datatable/extensions/dataTables.checkboxes.css">
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Page CSS-->
@@ -17,8 +13,6 @@
           href="{{asset('public/assets/backend')}}/app-assets/css/core/menu/menu-types/vertical-menu.css">
     <link rel="stylesheet" type="text/css"
           href="{{asset('public/assets/backend')}}/app-assets/css/core/colors/palette-gradient.css">
-    <link rel="stylesheet" type="text/css"
-          href="{{asset('public/assets/backend')}}/app-assets/css/plugins/file-uploaders/dropzone.css">
     <link rel="stylesheet" type="text/css"
           href="{{asset('public/assets/backend')}}/app-assets/css/pages/data-list-view.css">
     <!-- END: Page CSS-->
@@ -138,34 +132,8 @@
                             </div>
 
                         </form>
-                        <!-- add new sidebar ends -->
-                    {{--                    <div class="row">--}}
-                    {{--                        <div class="col-12">--}}
-                    {{--                            <div class="card text-white bg-gradient-primary text-center">--}}
-                    {{--                                <div class="card-header">--}}
-                    {{--                                    Add New Category--}}
-                    {{--                                </div>--}}
-                    {{--                                <div class="card-body">--}}
-                    {{--                                    <form action="{{route('admin.category.store')}}" method="post"--}}
-                    {{--                                          enctype="multipart/form-data">--}}
-                    {{--                                        @csrf--}}
-                    {{--                                        <div class="form-group">--}}
-                    {{--                                            <input type="text" class="form-control" name="name"--}}
-                    {{--                                                   placeholder="Enter Your Tag">--}}
-                    {{--                                        </div>--}}
-                    {{--                                        <div class="form-group">--}}
-                    {{--                                            <label class="btn btn-sm btn-primary ml-50 mb-50 mb-sm-0 cursor-pointer"--}}
-                    {{--                                                   for="account-upload">Upload new photo</label>--}}
-                    {{--                                            <input type="file" id="account-upload" name="image" hidden>--}}
-                    {{--                                        </div>--}}
-                    {{--                                        <button type="submit" class="btn btn-primary btn-block">ADD</button>--}}
-                    {{--                                    </form>--}}
-                    {{--                                </div>--}}
-                    {{--                            </div>--}}
-                    {{--                        </div>--}}
-                    {{--                    </div>--}}
+                    </div>
                 </section>
-                <!-- Column selectors with Export Options and print table -->
 
             </div>
 
@@ -180,7 +148,6 @@
 
     <!------------------------PAGE: Custom JS START------------------------------->
     <!-- BEGIN: Page Vendor JS-->
-  <script src="{{asset('public/assets/backend')}}/app-assets/vendors/js/extensions/dropzone.min.js"></script>
     <script src="{{asset('public/assets/backend')}}/app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
     <script
         src="{{asset('public/assets/backend')}}/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js"></script>
@@ -188,17 +155,12 @@
         src="{{asset('public/assets/backend')}}/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js"></script>
     <script
         src="{{asset('public/assets/backend')}}/app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js"></script>
-    <script
-        src="{{asset('public/assets/backend')}}/app-assets/vendors/js/tables/datatable/dataTables.select.min.js"></script>
-    <script
-        src="{{asset('public/assets/backend')}}/app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js"></script>
 
     <!-- BEGIN: Theme JS-->
     <script src="{{asset('public/assets/backend')}}/app-assets/js/scripts/components.js"></script>
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->
-   <script src="{{asset('public/assets/backend')}}/app-assets/js/scripts/extensions/dropzone.js"></script>
 
     <script src="{{asset('public/assets/backend')}}/app-assets/js/scripts/ui/data-list-view.js"></script>
     <!-- END: Page JS-->

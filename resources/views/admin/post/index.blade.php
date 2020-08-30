@@ -6,10 +6,6 @@
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css"
           href="{{asset('public/assets/backend')}}/app-assets/vendors/css/tables/datatable/datatables.min.css">
-    <link rel="stylesheet" type="text/css"
-          href="{{asset('public/assets/backend')}}/app-assets/vendors/css/file-uploaders/dropzone.min.css">
-    <link rel="stylesheet" type="text/css"
-          href="{{asset('public/assets/backend')}}/app-assets/vendors/css/tables/datatable/extensions/dataTables.checkboxes.css">
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Page CSS-->
@@ -17,8 +13,6 @@
           href="{{asset('public/assets/backend')}}/app-assets/css/core/menu/menu-types/vertical-menu.css">
     <link rel="stylesheet" type="text/css"
           href="{{asset('public/assets/backend')}}/app-assets/css/core/colors/palette-gradient.css">
-    <link rel="stylesheet" type="text/css"
-          href="{{asset('public/assets/backend')}}/app-assets/css/plugins/file-uploaders/dropzone.css">
     <link rel="stylesheet" type="text/css"
           href="{{asset('public/assets/backend')}}/app-assets/css/pages/data-list-view.css">
     <!-- END: Page CSS-->
@@ -153,27 +147,18 @@
 @push('js')
     <!------------------------PAGE: Custom JS START------------------------------->
     <!-- BEGIN: Page Vendor JS-->
-    <script src="{{asset('public/assets/backend')}}/app-assets/vendors/js/extensions/dropzone.min.js"></script>
     <script
         src="{{asset('public/assets/backend')}}/app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
     <script
         src="{{asset('public/assets/backend')}}/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js"></script>
-{{--    <script--}}
-{{--        src="{{asset('public/assets/backend')}}/app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js"></script>--}}
-{{--    <script--}}
-{{--        src="{{asset('public/assets/backend')}}/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js"></script>--}}
     <script
         src="{{asset('public/assets/backend')}}/app-assets/vendors/js/tables/datatable/dataTables.select.min.js"></script>
-    <script
-        src="{{asset('public/assets/backend')}}/app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js"></script>
 
     <!-- BEGIN: Theme JS-->
     <script src="{{asset('public/assets/backend')}}/app-assets/js/scripts/components.js"></script>
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->
-    <script src="{{asset('public/assets/backend')}}/app-assets/js/scripts/extensions/dropzone.js"></script>
-
     <script src="{{asset('public/assets/backend')}}/app-assets/js/scripts/ui/data-list-view.js"></script>
     <!-- END: Page JS-->
 
@@ -196,7 +181,7 @@
                 text: "You won't be able to revert this!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
+                confirmButtonText: 'Yes, Active it!',
                 cancelButtonText: 'No, cancel!',
                 reverseButtons: true
             }).then((result) => {
@@ -218,8 +203,6 @@
 
 
     </script>
-
-
 
     <!------------------------PAGE: Custom JS END------------------------------->
 @endpush

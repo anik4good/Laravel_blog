@@ -64,7 +64,8 @@ class PostController extends Controller
         ]);
 
         $image = $request->file('image');
-        $slug = str::slug($request->tittle);
+        $slug = str::slug($request->tittle.'-'.Str::random(2));
+
 
         //checking image if uploaded
         if (isset($image)) {
@@ -90,7 +91,7 @@ class PostController extends Controller
         //now saving all to database
         $post = new Post();
         $post->tittle = $request->tittle;
-        $post->slug = $slug;
+        $post->slug =  $slug;
         $post->user_id = Auth::id();
         $post->image = $imgname;
         $post->body = $request->body;
@@ -161,7 +162,7 @@ class PostController extends Controller
         ]);
 
         $image = $request->file('image');
-        $slug = str::slug($request->tittle);
+        $slug = str::slug($request->tittle.'-'.Str::random(2));
 
         //checking image if uploaded
         if (isset($image)) {
@@ -192,7 +193,7 @@ class PostController extends Controller
         //now saving all to database
 
         $post->tittle = $request->tittle;
-        $post->slug = $slug;
+        $post->slug =   $slug;
         $post->user_id = Auth::id();
         $post->image = $imgname;
         $post->body = $request->body;

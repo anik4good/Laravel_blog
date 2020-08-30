@@ -18,7 +18,7 @@
 @section('content')
 
     <!-- BEGIN: Content-->
-    <div class="app-content content" >
+    <div class="app-content content">
         <div class="content-wrapper">
             <div class="content-body">
                 <form action="{{route('admin.post.store')}}" method="post"
@@ -45,15 +45,17 @@
                                                 <div class="card border-info text-center bg-transparent">
                                                     <div class="card-content">
                                                         <img
-                                                            src="{{asset('public/assets/backend')}}/app-assets/images/elements/macbook-pro.png"
-                                                            alt="element 04" class="float-left mt-3 pl-2 img-fluid"
+                                                            src="#" id="image"
+                                                            alt="Featured Images" class="float-left mt-1 mb-1 pl-2 img-fluid"
                                                             width="150">
                                                         <div class="card-body">
-                                                            <h4 class="card-title mt-3">Featured Images</h4>
+                                                          
                                                             <label
                                                                 class="btn btn-sm btn-primary ml-50 mb-50 mb-sm-0 cursor-pointer"
                                                                 for="account-upload">Upload</label>
-                                                            <input type="file" id="account-upload" name="image" hidden
+                                                            <input type="file" id="account-upload"
+                                                                   onchange="readURL(this);" name="image" hidden
+                                                                   value=""
                                                                    class="form-control {{$errors->has('image') ? 'is-invalid' :''}}">
                                                         </div>
                                                     </div>
@@ -184,13 +186,25 @@
 
 
 
+    <script type="text/javascript">
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#image')
+                        .attr('src', e.target.result);
 
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#summernote').summernote({
-               height:800,
-        });
+                height: 800,
+            });
 
         });
     </script>

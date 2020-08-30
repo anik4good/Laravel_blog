@@ -39,10 +39,10 @@
                 <!-- Column selectors with Export Options and print table -->
                 <section id="data-thumb-view" class="data-thumb-view-header">
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table table-striped dataex-html5-selectors">
                             <thead>
                             <tr>
-                    
+
                                 <th>Comments Info</th>
                                 <th>post Info</th>
                                 <td>Action</td>
@@ -52,7 +52,7 @@
                             <tbody>
                             @foreach($comments as $key=>$comment)
                                 <tr>
-                                   
+
                                     <td class="product-name">
                                         <div class="row">
                                             <div class="col-lg-10 col-sm-6 col-12">
@@ -70,15 +70,15 @@
                                                             <p>{{$comment->comment }}</p>
                                                             <p>Commented by <span class="badge badge-pill badge-success">{{$comment->user->name }}</span><span class="badge badge-pill badge-info badge-up">{{$comment->created_at->diffForHumans() }}</span></p>
                                                             <a href="{{route('post.single',$comment->post->slug)}}">Reply</a>
-                                                           
+
                                                         </div>
-                                                        
+
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
-                                    
+
                                     <td class="product-name">
                                         <div class="row">
                                             <div class="col-lg-10 col-sm-6 col-12">
@@ -96,7 +96,7 @@
                                                             <a href="{{route('post.single',$comment->post->slug)}}">{{Str::limit($comment->post->tittle, 30) }}</a>
                                                             <p>Post Created by <span class="badge badge-pill badge-success">{{$comment->post->user->name }}</span><span class="badge badge-pill badge-info badge-up">{{$comment->post->created_at->diffForHumans() }}</span></p>
                                                         </div>
-                                                        
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -105,20 +105,20 @@
                                     <td class="product-action">
                                         <div class="row">
                                             <div class="col-lg-8 col-sm-6 col-12">
-                                            
+
                                                     <a onclick="deleteid({{$comment->id}})"><i
                                                         class="feather icon-trash"></i></a>
                                                 <form id="delete-id-{{$comment->id}}"
                                                       action="{{route('admin.comment.destroy',$comment->id)}}"
                                                       method="post" style="display: none">
                                                     @csrf
-                                                  
-        
+
+
                                                 </form>
-                                               
+
                                             </div>
                                         </div>
-                                      
+
                                     </td>
                                 </tr>
                             @endforeach

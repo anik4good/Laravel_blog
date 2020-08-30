@@ -57,7 +57,7 @@ class PostController extends Controller
         ]);
 
         $image = $request->file('image');
-        $slug = str::slug($request->tittle);
+        $slug = str::slug($request->tittle.'-'.Str::random(2));
 
         //checking image if uploaded
         if (isset($image)) {
@@ -163,7 +163,7 @@ class PostController extends Controller
         ]);
 
         $image = $request->file('image');
-        $slug = str::slug($request->tittle);
+        $slug = str::slug($request->tittle.'-'.Str::random(2));
 
         //checking image if uploaded
         if (isset($image)) {

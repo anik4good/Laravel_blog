@@ -8,6 +8,7 @@ use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
+
 class PostController extends Controller
 {
 
@@ -25,19 +26,16 @@ class PostController extends Controller
             Session::put($blog_key, 1);
         }
 
-        return view('single_post', compact('posts', 'random_posts','comments'));
+        return view('single_post', compact('posts', 'random_posts', 'comments'));
 
 
     }
 
     public function allpost()
     {
-
         $posts = Post::latest()->approved()->status()->paginate(2);
         $categories = Category::all();
         return view('posts', compact('categories', 'posts'));
-
-
     }
 
     public function postbycategory($slug)
@@ -45,8 +43,8 @@ class PostController extends Controller
 
 
         $category = Category::where('slug', $slug)->first();
-      $posts =  $category->posts()->approved()->status()->get();
-        return view('category_post',compact('category','posts'));
+        $posts = $category->posts()->approved()->status()->get();
+        return view('category_post', compact('category', 'posts'));
 
     }
 
@@ -55,8 +53,8 @@ class PostController extends Controller
 
 
         $tag = Tag::where('slug', $slug)->first();
-        $posts =  $tag->posts()->approved()->status()->get();
-        return view('tag_post',compact('tag','posts'));
+        $posts = $tag->posts()->approved()->status()->get();
+        return view('tag_post', compact('tag', 'posts'));
 
     }
 }

@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'username', 'role_id', 'password',
     ];
 
     /**
@@ -55,5 +55,10 @@ class User extends Authenticatable
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function ScopeAuthor($query)
+    {
+        return $query->where('role_id', 2);
     }
 }
