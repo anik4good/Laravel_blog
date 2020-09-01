@@ -23,8 +23,6 @@
           href="{{asset('public/assets/backend')}}/app-assets/css/pages/data-list-view.css">
     <!-- END: Page CSS-->
 
-
-
     <!------------------------PAGE: Custom CSS END------------------------------->
 @endpush
 
@@ -35,24 +33,20 @@
     <div class="app-content content">
         <div class="content-wrapper">
             <div class="content-body">
-
                 <!-- Column selectors with Export Options and print table -->
                 <section id="data-thumb-view" class="data-thumb-view-header">
                     <div class="table-responsive">
                         <table class="table table-striped dataex-html5-selectors">
                             <thead>
                             <tr>
-
                                 <th>Comments Info</th>
                                 <th>post Info</th>
                                 <td>Action</td>
-
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($comments as $key=>$comment)
                                 <tr>
-
                                     <td class="product-name">
                                         <div class="row">
                                             <div class="col-lg-10 col-sm-6 col-12">
@@ -61,24 +55,24 @@
                                                         <div class="avatar bg-rgba-primary p-50 m-0">
                                                             <div class="avatar-content">
                                                                 <img
-                                                                src="{{ asset('/public/storage/profile')}}/{{$comment->user->image }}"
-                                                                class="rounded" alt="profile image" height="64"
-                                                                width="64">
+                                                                    src="{{ asset('/public/storage/profile')}}/{{$comment->user->image }}"
+                                                                    class="rounded" alt="profile image" height="64"
+                                                                    width="64">
                                                             </div>
                                                         </div>
                                                         <div>
                                                             <p>{{$comment->comment }}</p>
-                                                            <p>Commented by <span class="badge badge-pill badge-success">{{$comment->user->name }}</span><span class="badge badge-pill badge-info badge-up">{{$comment->created_at->diffForHumans() }}</span></p>
+                                                            <p>Commented by <span
+                                                                    class="badge badge-pill badge-success">{{$comment->user->name }}</span><span
+                                                                    class="badge badge-pill badge-info badge-up">{{$comment->created_at->diffForHumans() }}</span>
+                                                            </p>
                                                             <a href="{{route('post.single',$comment->post->slug)}}">Reply</a>
-
                                                         </div>
-
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
-
                                     <td class="product-name">
                                         <div class="row">
                                             <div class="col-lg-10 col-sm-6 col-12">
@@ -87,16 +81,18 @@
                                                         <div class="avatar bg-rgba-primary p-50 m-0">
                                                             <div class="avatar-content">
                                                                 <img
-                                                                src="{{ asset('/public/storage/profile')}}/{{$comment->post->user->image }}"
-                                                                class="rounded" alt="profile image" height="64"
-                                                                width="64">
+                                                                    src="{{ asset('/public/storage/profile')}}/{{$comment->post->user->image }}"
+                                                                    class="rounded" alt="profile image" height="64"
+                                                                    width="64">
                                                             </div>
                                                         </div>
                                                         <div>
                                                             <a href="{{route('post.single',$comment->post->slug)}}">{{Str::limit($comment->post->tittle, 30) }}</a>
-                                                            <p>Post Created by <span class="badge badge-pill badge-success">{{$comment->post->user->name }}</span><span class="badge badge-pill badge-info badge-up">{{$comment->post->created_at->diffForHumans() }}</span></p>
+                                                            <p>Post Created by <span
+                                                                    class="badge badge-pill badge-success">{{$comment->post->user->name }}</span><span
+                                                                    class="badge badge-pill badge-info badge-up">{{$comment->post->created_at->diffForHumans() }}</span>
+                                                            </p>
                                                         </div>
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -105,27 +101,21 @@
                                     <td class="product-action">
                                         <div class="row">
                                             <div class="col-lg-8 col-sm-6 col-12">
-
-                                                    <a onclick="deleteid({{$comment->id}})"><i
+                                                <a onclick="deleteid({{$comment->id}})"><i
                                                         class="feather icon-trash"></i></a>
                                                 <form id="delete-id-{{$comment->id}}"
                                                       action="{{route('admin.comment.destroy',$comment->id)}}"
                                                       method="post" style="display: none">
                                                     @csrf
-
-
                                                 </form>
-
                                             </div>
                                         </div>
-
                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
                     </div>
-
                 </section>
             </div>
         </div>
@@ -143,10 +133,10 @@
         src="{{asset('public/assets/backend')}}/app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
     <script
         src="{{asset('public/assets/backend')}}/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js"></script>
-{{--    <script--}}
-{{--        src="{{asset('public/assets/backend')}}/app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js"></script>--}}
-{{--    <script--}}
-{{--        src="{{asset('public/assets/backend')}}/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js"></script>--}}
+    {{--    <script--}}
+    {{--        src="{{asset('public/assets/backend')}}/app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js"></script>--}}
+    {{--    <script--}}
+    {{--        src="{{asset('public/assets/backend')}}/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js"></script>--}}
     <script
         src="{{asset('public/assets/backend')}}/app-assets/vendors/js/tables/datatable/dataTables.select.min.js"></script>
     <script
@@ -200,8 +190,6 @@
                 }
             })
         }
-
-
     </script>
 
 
